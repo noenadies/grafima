@@ -97,15 +97,7 @@ pstatico.visible=false;
     player.body.allowRotation = false;
    player.visible=false;
     
-graphics =game.add.graphics(0, 0);
 
-    graphics.beginFill(0x027a71);
-    graphics.lineStyle(4, 0x02fdeb, 0.6);
-    
-    graphics.moveTo(mundox/2, 0);
-    graphics.lineTo(mundox/2,mundoy);
-    graphics.moveTo(0,mundoy/2);
-    graphics.lineTo(mundox,mundoy/2);
     
    
 
