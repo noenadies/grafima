@@ -20,7 +20,7 @@ var mir;
     
         var IDE_HOOK = false;
         var VERSION = '2.6.2';
-
+var graphics2;
         
 var game = new Phaser.Game(vw,vh, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
@@ -99,6 +99,8 @@ pstatico.visible=false;
     
 
     
+
+    
    
 
 var p1x=mundox/2;
@@ -113,7 +115,21 @@ var  style={ font: "bold "+String(vw*0.04)+"px Arial", fill: "#B21437", boundsAl
 
 
 game.camera.follow(fon, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+graphics =game.add.graphics(0, 0);
 
+    graphics.beginFill(0x027a71);
+    graphics.lineStyle(4, 0x02fdeb, 0.6);
+    
+    graphics.moveTo(mundox/2, 0);
+    graphics.lineTo(mundox/2,mundoy);
+    graphics.moveTo(0,mundoy/2);
+    graphics.lineTo(mundox,2500);
+    
+ 
+ graphics2 =game.add.graphics(0, 0);
+
+    graphics2.beginFill(0x027a71);
+    graphics2.lineStyle(4, 0x02fdeb, 0.6);
 
 editex.update();
 
@@ -136,15 +152,6 @@ editex.visibletrigono(false);
 
 
 
-  bmd = game.make.bitmapData(mundox, mundoy);
-    bmd.addToWorld();
-      bmdf1 = game.make.bitmapData(mundox, mundoy);
-    bmdf1.addToWorld();
-
-      bmdf2 = game.make.bitmapData(mundox, mundoy);
-    bmdf2.addToWorld();
-      bmdf3 = game.make.bitmapData(mundox, mundoy);
-    bmdf3.addToWorld();
 
 crearejes(ox,oy);
 
@@ -291,7 +298,7 @@ if(editex.booltexto_f3){
  
 textoecua=editex.valortexto_f3;
 
-bmdf3.clear();
+
 
 
 
@@ -307,7 +314,7 @@ theplot[0].addPlot(String(textoecua),FOOPLOT_TYPE_FUNCTION,{'color':$(this).find
   
    theplot[0].reDraw();
   colorf3='#F32D09';
-    ecuacion(bmdf3,colorf3);
+    ecuacion();
 
 
 }
@@ -373,7 +380,7 @@ theplot[0].addPlot(String(textoecua),FOOPLOT_TYPE_FUNCTION,{'color':$(this).find
 
 
 
-function ecuacion (bmdobj,colr){
+function ecuacion (){
 var cc=0;
 
 var  arrayl=[]; 
