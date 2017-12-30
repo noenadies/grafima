@@ -407,23 +407,27 @@ cambiartextx();
 
 
 
+
 var  n1=0;
 var n2=0;
 var f=unidadmedida;
 var ct=0;
+
+graphics2.moveTo(mundox/2+(arrayl[n1].x-ox)*f,mundoy/2-(arrayl[n1].y-oy)*f);
 for(var i=1; i<arrayl.length;i=i+1){
   ct=ct;
   n1=ct;
   n2=ct+1;
  
-
-
+// graphics2.moveTo(mundox/2, 0);
+  graphics2.lineTo(mundox/2+(arrayl[i].x-ox)*f,mundoy/2 -(arrayl[i].y-oy)*f);
+    
+/*
 bmdobj.line(mundox/2+(arrayl[n1].x-ox)*f,mundoy/2-(arrayl[n1].y-oy)*f,
   mundox/2+(arrayl[n2].x-ox)*f,mundoy/2 -(arrayl[n2].y-oy)*f,colr, 7);
-ct=ct+1;
+ct=ct+1;*/
 
 }
-
 
 
 fy1=[];
