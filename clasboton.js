@@ -5293,7 +5293,7 @@ this.update=function(){
 
 
    btcero.position.x=game.camera.x;
-   btcero.position.y=vh*0.70;
+   btcero.position.y=vh*0.90;
 
 
       btf1.position.x= btcero.position.x+vw*0;
@@ -5389,7 +5389,7 @@ btpunto.position.x= btcero.position.x+vw*0.17;
 btgraf.position.x=  btcero.position.x;
    btgraf.position.y=btparenizq.position.y -vw*0.2;
 
-   btxmin.position.x=btgraf.position.x+60;
+   btxmin.position.x=btgraf.position.x+40;
    btxmin.position.y=btgraf.position.y -vw*0.2;
 
     btxmax.position.x=btxmin.position.x;
@@ -5408,7 +5408,7 @@ btgraf.position.x=  btcero.position.x;
    btflechai.position.y=btflechad.y;
 
      btsin.position.x=game.camera.x;
-   btsin.position.y=vh*0.70;
+   btsin.position.y=vh*0.90;
 
     btcos.position.x=btsin.position.x+vw*0.17;
    btcos.position.y=btsin.position.y;
