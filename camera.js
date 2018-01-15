@@ -1,3 +1,5 @@
+/* global fy1 */
+
 var graphics ;
 var vw = window.innerWidth;
 var vh = window.innerHeight;
@@ -16,7 +18,7 @@ var mirtensparente;
 var mir;
 
  var unidadmedida=60;
- var cuantaslineas=20;
+ var cuantaslineas=40;
     
         var IDE_HOOK = false;
         var VERSION = '2.6.2';
@@ -31,6 +33,7 @@ function preload() {
      game.load.spritesheet('mir', 'mir.png',60, 60, 3);
  
   game.load.image('fon', 'fon.png');
+  game.load.image('fone', 'fone.png');
       game.load.image('player','phaser-dude.png');
     cargaimaeditext();
 }
@@ -51,7 +54,13 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
-
+  fone=game.add.sprite(0,0, 'fone');
+  fone.anchor.setTo(0.5, 0.5);
+ // if(vw<670){ fon.scale.set(0.0022580645*vw+0.5612903226)}
+  fone.scale.set(0.0018*vw,0.003*vh);
+  fone.width;
+  fone.x=mundox/2;
+   fone.y=mundoy/2;
 
   fon=game.add.sprite(0,0, 'fon');
   fon.anchor.setTo(0.5, 0.5);
@@ -60,6 +69,9 @@ function create() {
   fon.width;
   fon.x=mundox/2;
    fon.y=mundoy/2;
+   
+   
+
 game.physics.enable(fon, Phaser.Physics.ARCADE);
 
     game.physics.arcade.gravity.y = 0;
@@ -141,7 +153,7 @@ editex.visibletrigono(false);
         this.gamepad = this.game.plugins.add(Phaser.Plugin.VirtualGamepad);
         
         // Add a joystick to the game (only one is allowed right now)
-        this.joystick = this.gamepad.addJoystick(100, 420, 1.2, 'gamepad');
+        this.joystick = this.gamepad.addJoystick(100, editex.josty, 1.2, 'gamepad');
         
         // Add a button to the game (only one is allowed right now)
         this.button = this.gamepad.addButton(-400,- 4200, 1.0, 'gamepad');
@@ -171,11 +183,25 @@ crearejes(ox,oy);
 }
 
 function update() {
+
+
+editex.horatemp=editex.valortexto_f2;
+editex.ano=editex.valortexto_f1;
+
+editex.humedad=editex.valortexto_xmin;
+editex.altura=editex.valortexto_xmax;
+editex.mes=editex.valortexto_mes;
+editex.dia=editex.valortexto_dia;
+
+
   fon.rotation += 0.005;
  if (this.joystick.properties.inUse) {
            
        fon.x =fon.x+ 0.1* this.joystick.properties.x;
         fon.y =fon.y+ 0.1 * this.joystick.properties.y;
+        
+         fone.x =fon.x;
+        fone.y =fon.y;
        
 }
 
@@ -185,8 +211,8 @@ mirtensparente.y=-((mir.y-(oy)*unidadmedida)-mundoy/2)/unidadmedida;
  
 
 mir.rotation = game.physics.arcade.moveToPointer(mir, 60, game.input.activePointer, 500);
-editex.Textsalx.setText("x= "+mirtensparente.x );
-editex.Textsaly.setText("y= "+mirtensparente.y );
+editex.Textsalx.setText("hora= "+mirtensparente.x );
+editex.Textsaly.setText("temp C= "+mirtensparente.y );
 
 }
 
@@ -214,7 +240,7 @@ contyn=iy;
 
        tamanotexto_nu=15;
    
-        var style_nu = { font: "bold "+tamanotexto_nu+"px Arial", fill: "#FF3E00", boundsAlignH: "center", boundsAlignV: "middle" };
+        var style_nu = { font: "bold "+tamanotexto_nu+"px Arial", fill: "#00FFFF", boundsAlignH: "center", boundsAlignV: "middle" };
  
   
      
@@ -289,86 +315,35 @@ contyn=iy;
 
 
 
-function act_btngraf(){var textoecua0="";
+function act_btngraf(){
+if(true){
+  
+  var textoecua0="";
 
 
   editex.visiblebasico(false);
-if(editex.booltexto_f3){
-
- 
-textoecua=editex.valortexto_f3;
-
-
-
-
-
-
+  
+  
 theplot=[];
 theplot.push(new Fooplot(document.getElementById('theplot')));
+   
+    
+  var ampli=  String(editex.amplitud);
+  var temmin=  String(editex.tempalturamin);
+   var cer=  String(this.humedadinter);
+textoecua="sin(x*"+cer+")^2*"+ampli+"+"+temmin;
 
-
-
-
+//textoecua="sin(x)";
 theplot[0].addPlot(String(textoecua),FOOPLOT_TYPE_FUNCTION,{'color':$(this).find('.data-color').val()});
 
   
    theplot[0].reDraw();
   colorf3='#F32D09';
     ecuacion();
-
-
-}
-if(editex.booltexto_f2){
-textoecua=editex.valortexto_f2;
-
-
-
-
-
-
-
-theplot=[];
-theplot.push(new Fooplot(document.getElementById('theplot')));
-
-
-
-
-theplot[0].addPlot(String(textoecua),FOOPLOT_TYPE_FUNCTION,{'color':$(this).find('.data-color').val()});
-
-
-   theplot[0].reDraw();
-  colorf2='#E9FA05';
-    ecuacion();
-}
-if(editex.booltexto_f1){
-textoecua=editex.valortexto_f1;
-
-
-
-
-
-
-
-
-theplot=[];
-theplot.push(new Fooplot(document.getElementById('theplot')));
-
-
-
-
-theplot[0].addPlot(String(textoecua),FOOPLOT_TYPE_FUNCTION,{'color':$(this).find('.data-color').val()});
-
  
-   theplot[0].reDraw();
-  colorf1='#FA05AE';
-    ecuacion();
-
-
-
 
 }
 
- 
 
 }
 
@@ -391,7 +366,7 @@ for(var i=1; i<fy1.length;i=i+1){
  arrayl.push(new Phaser.Point(fx1[i],fy1[i]));
 }
 
-
+/*
 if(editex.booltexto_minmax){
 var indicefy1=0;
 indicefy1=fy1.length/2;
@@ -399,7 +374,7 @@ ox=Math.round(fx1[indicefy1]);
  oy=Math.round(fy1[indicefy1]);
  console.log(ox+"  "+oy);
 cambiartextx();
-}
+}*/
 
 
 
@@ -411,7 +386,7 @@ var ct=0;
 
 
  //graphics2.beginFill(0x027a71);
-    graphics2.lineStyle(4, 0x5BFFFE, 0.6);
+    graphics2.lineStyle(9, 0x5BFFFE, 0.6);
 graphics2.moveTo(mundox/2+(arrayl[n1].x-ox)*f,mundoy/2-(arrayl[n1].y-oy)*f);
 for(var i=1; i<arrayl.length;i=i+1){
   ct=ct;
